@@ -1,7 +1,8 @@
 import axios from "axios";
 
-export const api = async (file) => {
-    const API_BASE_URL = "http://localhost:8086/api/image";
+export const uploadFile = async (file) => {
+
+    const API_BASE_URL = "https://image-uploader-modasby.herokuapp.com/api/image";
 
     const config = {
         headers: {
@@ -11,5 +12,4 @@ export const api = async (file) => {
     const request = await axios.post(`${API_BASE_URL}/upload`, file, config);
 
     return request.data;
-
 }

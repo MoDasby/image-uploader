@@ -20,7 +20,7 @@ const Uploaded = () => {
         }
     }, [textToCopy]);
 
-    const apiUrl = 'http://localhost:8086/api/image';
+    const apiUrl = 'https://image-uploader-modasby.herokuapp.com/api/image';
 
     return (
         <>
@@ -32,12 +32,12 @@ const Uploaded = () => {
                 </div>
 
                 <div>
-                    <img className='uploaded-image' src={`${apiUrl}/download/${fileUri}`} alt="uploaded" />
+                    <img className='uploaded-image' src={`${apiUrl}/${fileUri}`} alt="uploaded" />
                 </div>
 
                 <div className='uploaded-link-container'>
-                    <p className='uploaded-link'>{`${apiUrl}/download/${fileUri}`}</p>
-                    <button className='copy-button-not-clicked' ref={buttonRef} onClick={() => setTextToCopy(`${apiUrl}/download/${fileUri}`)}></button>
+                    <p className='uploaded-link'>{`${apiUrl}/${fileUri}`}</p>
+                    <button className='copy-button-not-clicked' ref={buttonRef} onClick={() => setTextToCopy(`${apiUrl}/${fileUri}`)}></button>
                 </div>
             </div>
             

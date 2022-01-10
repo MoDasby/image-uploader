@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { api } from '../../utils/api';
+import { uploadFile } from '../../utils/api';
 import Footer from '../Footer/index';
 import './style.css';
 
@@ -11,8 +11,8 @@ const Upload = () => {
         
         async function fetchData() {
             if (file) {
-                const req = await api(file);
-                const fileUri = req.name;
+                const req = await uploadFile(file);
+                const fileUri = req.id;
 
                 window.location.href = `/uploading/${fileUri}`;
             }
