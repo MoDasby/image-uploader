@@ -1,20 +1,23 @@
 import { useEffect, useState } from 'react';
 import { uploadFile } from '../../utils/api';
+import Uploading from '../Uploading/index'
 import Footer from '../Footer/index';
 import './style.css';
 
 const Upload = () => {
 
+    const [isLoading, setIsLoading] = useState(false);
     const [file, setFile] = useState();
 
     useEffect(() => {
-        
+
         async function fetchData() {
             if (file) {
+                setIsLoading(true);
                 const req = await uploadFile(file);
                 const fileUri = req.id;
 
-                window.location.href = `/uploading/${fileUri}`;
+                window.location.href = `/uploaded/${fileUri}`;
             }
         }
 
@@ -62,43 +65,44 @@ const Upload = () => {
 
 
     return (
-        <>
-            <div className="modal">
-                <div className="modal-content">
-                    <span className="close" onClick={() => document.querySelector(".modal-active").setAttribute("class", "modal")}>&times;</span>
-                    <p>File must be an image</p>
-                </div>
-            </div>
-
-            <div className="container">
-                <div className="header">
-                    Upload your image
+        isLoading ? <Uploading /> :
+            <>
+                <div className="modal">
+                    <div className="modal-content">
+                        <span className="close" onClick={() => document.querySelector(".modal-active").setAttribute("class", "modal")}>&times;</span>
+                        <p>File must be an image</p>
+                    </div>
                 </div>
 
-                <div className='subheader'>
-                    File should be Jpeg, Png...
-                </div>
-
-                <div className='drop-zone' onDrop={dropHandler} onDragOver={dragOverHandler}>
-                    <div className='icon'>
+                <div className="container" style={{ height: "470px" }}>
+                    <div className="header">
+                        Upload your image
                     </div>
 
-                    <p>
-                        Drag & Drop your image here
-                    </p>
+                    <div className='subheader'>
+                        File should be Jpeg, Png...
+                    </div>
+
+                    <div className='drop-zone' onDrop={dropHandler} onDragOver={dragOverHandler}>
+                        <div className='icon'>
+                        </div>
+
+                        <p>
+                            Drag & Drop your image here
+                        </p>
+                    </div>
+
+                    <span>
+                        Or
+                    </span>
+
+                    <button onClick={() => document.querySelector("#file-input").click()}>Choose a file</button>
+
+                    <input type='file' id="file-input" onChange={onChangeHandler} accept='image/*' hidden></input>
                 </div>
 
-                <span>
-                    Or
-                </span>
-
-                <button onClick={() => document.querySelector("#file-input").click()}>Choose a file</button>
-
-                <input type='file' id="file-input" onChange={onChangeHandler} accept='image/*' hidden></input>
-            </div>
-
-            <Footer />
-        </>
+                <Footer />
+            </>
     )
 }
 
