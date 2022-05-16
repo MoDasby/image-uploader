@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import Footer from '../Footer/index';
 import './style.css';
 
 const Uploaded = () => {
@@ -24,7 +23,7 @@ const Uploaded = () => {
 
     return (
         <>
-            <div className="uploaded-container">
+            <div className="container">
                 <div className='icon-done'></div>
 
                 <div className='uploaded-text'>
@@ -40,8 +39,6 @@ const Uploaded = () => {
                     <button className='copy-button-not-clicked' ref={buttonRef} onClick={() => setTextToCopy(`${apiUrl}/${fileUri}`)}></button>
                 </div>
             </div>
-            
-            <Footer />
         </>
     );
 }

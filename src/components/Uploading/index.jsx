@@ -1,4 +1,3 @@
-import Footer from '../Footer/index';
 import './style.css';
 
 const Uploading = () => {
@@ -8,8 +7,6 @@ const Uploading = () => {
                 <p className="header">Uploading...</p>
                 <div className="loading-bar"></div>
             </div>
-            
-            <Footer />
         </>
     )
 }

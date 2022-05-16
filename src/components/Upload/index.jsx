@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
-import { uploadFile } from '../../utils/api';
-import Uploading from '../Uploading/index'
-import Footer from '../Footer/index';
+import { uploadFile } from '../../api/uploadFile';
+import Uploading from '../Uploading/index';
 import './style.css';
 
 const Upload = () => {
@@ -74,7 +73,7 @@ const Upload = () => {
                     </div>
                 </div>
 
-                <div className="container" style={{ height: "470px" }}>
+                <div className="container">
                     <div className="header">
                         Upload your image
                     </div>
@@ -100,8 +99,6 @@ const Upload = () => {
 
                     <input type='file' id="file-input" onChange={onChangeHandler} accept='image/*' hidden></input>
                 </div>
-
-                <Footer />
             </>
     )
 }
